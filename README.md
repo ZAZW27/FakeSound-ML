@@ -1,4 +1,4 @@
-Evaluating WavLM and EAT for Audio Deepfake Detection under Ultra-Short Spoofing Conditions
+# Evaluating WavLM and EAT for Audio Deepfake Detection under Ultra-Short Spoofing Conditions
 Summary
 
 The development of generative audio models has increased the risk of deepfake audio, triggering significant challenges for automatic detection systems. While Self-Supervised Learning (SSL) models have proven effective for detection, almost all current experiments test relatively long spoof conditions and fail to evaluate robustness under hostile conditions with shorter spoof durations. This study examines the robustness of two SSL-based models, WavLM and EAT, under ultra-short spoof durations using a publicly accessible FakeSound train dataset. The experiment is designed under two conditions: a baseline spoof duration over one second, and a short spoof duration under 50 ms. Performance is measured using Equal Error Rate (EER) and F1 score at multiple temporal tolerances to examine localization precision. Both models show degradation in their ability to discriminate temporal localization when the spoof duration drops below 50 ms, highlighting minimal temporal spoofing as an underexplored challenge for current detection systems. EAT consistently achieves lower EER and higher temporal localization than WavLM for both conditions, demonstrating that general SSL models are more powerful for localizing spoofing segments. Although the absolute degradation of EAT from long to short is larger than that of WavLM, it underscores that a more robust model is not immune to ultra-short manipulations. These findings demonstrate that long spoof segments may overestimate real-world robustness.
@@ -70,32 +70,6 @@ Environment Setup
 The project utilizes a custom Python 3.10 environment to avoid dependency conflicts. The setup script configures the necessary repositories and libraries (PyTorch, Fairseq, Librosa, etc.) using subprocesses.
 bash
 
-# Add deadsnakes PPA for Python 3.10
-
-add-apt-repository ppa:deadsnakes/ppa -y
-apt-get install -y python3.10 python3.10-distutils
-
-# Install dependencies
-
-curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
-/usr/bin/python3.10 -m pip install --upgrade pip
-/usr/bin/python3.10 -m pip install torch torchaudio torchvision
-/usr/bin/python3.10 -m pip install librosa timm transformers hydra-core omegaconf sacrebleu tensorboardX datasets
-
-To run the code:
-
-    Clone this repository.
-
-    Open FakeSound.ipynb in Google Colab or a Jupyter environment.
-
-    Mount your Google Drive to access datasets if necessary.
-
-    Execute the notebook cells to download data, run spoof injection via AudioLDM2, and train/evaluate the models.
-
-Citation
-
-If you use this code or findings in your research, please cite the authors:
-bibtex
 
 @article{zaini2024evaluating,
 title={Evaluating WavLM and EAT for Audio Deepfake Detection under Ultra-Short Spoofing Conditions},
